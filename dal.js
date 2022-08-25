@@ -2,10 +2,11 @@ const MongoClient = require('mongodb').MongoClient;
 const ObjectId = require('mongoose').Types.ObjectId
 const url = 'mongodb://localhost:27017';
 const db = process.env.MONGODB_URL;
+var mongoose = require(‘mongoose’);
 let users = null;
 
 // connect to mongo
-var mongoose = require(‘mongoose’);
+
 mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://thatcrazysomebeach:vwwaGt@6myiSzFZ@cluster0.htnm7ae.mongodb.net/?retryWrites=true&w=majority');
   
   // connect to Bank database
