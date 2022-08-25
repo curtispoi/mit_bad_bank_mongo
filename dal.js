@@ -5,8 +5,10 @@ let db = null;
 let users = null;
 
 // connect to mongo
-MongoClient.connect(url, {useUnifiedTopology: true}, (err, client) => {
-  console.log('Connected to the database server.')
+Mmongoose.connect(process.env.MONGODB_URI, {useNewUrlParser: true});
+const conn = mongoose.connection;
+mongoose.connection.once('open', () => { console.log('MongoDB Connected'); });
+mongoose.connection.on('error', (err) => { console.log('MongoDB connection error: ', err); }); 
   
   // connect to Bank database
   db = client.db('mit_bad_bank');
