@@ -1,8 +1,7 @@
 const MongoClient = require('mongodb').MongoClient;
 const ObjectId = require('mongoose').Types.ObjectId
 const url = 'mongodb://localhost:27017';
-DB_CONNECT = mongodb+srv://thatcrazysomebeach:vwwaGt@6myiSzFZ@cluster0.htnm7ae.mongodb.net/?retryWrites=true&w=majority
-let db = null;
+const db = process.env.MONGODB_URL;
 let users = null;
 
 // connect to mongo
