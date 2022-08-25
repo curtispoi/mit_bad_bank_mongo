@@ -5,19 +5,9 @@ const db = null;
 let users = null;
 
 // connect to mongo
+MongoClient.connect(url, {useUnifiedTopology: true}, (err, client) => {
+  console.log('Connected to the database server.');
 
-const connectionParams={
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useUnifiedTopology: true 
-}
-mongoose.connect(url,connectionParams)
-    .then( () => {
-        console.log('Connected to the database ')
-    })
-    .catch( (err) => {
-        console.error(`Error connecting to the database. n${err}`);
-    })
   // connect to Bank database
   db = client.db('mit_bad_bank');
   // user collection
