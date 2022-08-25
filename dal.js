@@ -5,8 +5,8 @@ const db = process.env.MONGODB_URL;
 let users = null;
 
 // connect to mongo
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/27017', { useNewUrlParser: true, useUnifiedTopology: true });
-mongoose.set('useCreateIndex', true);
+var mongoose = require(‘mongoose’);
+mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://thatcrazysomebeach:vwwaGt@6myiSzFZ@cluster0.htnm7ae.mongodb.net/?retryWrites=true&w=majority');
   
   // connect to Bank database
   db = client.db('mit_bad_bank');
