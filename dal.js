@@ -5,7 +5,7 @@ let db = null;
 let users = null;
 
 // connect to mongo
-MongoClient.connect(url, {useUnifiedTopology: true}, (err, client) => {
+mongoose.connect('mongodb+srv://thatcrazysomebeach:vwwaGt@6myiSzFZ@cluster0.htnm7ae.mongodb.net/?retryWrites=true&w=majority'), {useUnifiedTopology: true}, (err, client) => {
   console.log('Connected to the database server.');
   
   // connect to Bank database
