@@ -7,7 +7,7 @@ let users = null;
 // connect to mongo
 MongoClient.connect(url, {useUnifiedTopology: true}, (err, client) => {
   console.log('Connected to the database server.');
-
+  
   // connect to Bank database
   db = client.db('Bank');
   // user collection
