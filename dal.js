@@ -1,13 +1,12 @@
 const MongoClient = require('mongodb').MongoClient;
 const ObjectId = require('mongoose').Types.ObjectId
 const url = 'mongodb://localhost:27017';
-const uri = process.env.MONGODB_URI;
 let db = null;
 let users = null;
 
 // connect to mongo
-mongoose.connect('mongodb+srv://thatcrazysomebeach:vwwaGt@6myiSzFZ@cluster0.htnm7ae.mongodb.net/?retryWrites=true&w=majority'), {useUnifiedTopology: true}, (err, client) => {
-  console.log('Connected to the database server.');
+MongoClient.connect(url, {useUnifiedTopology: true}, (err, client) => {
+  console.log('Connected to the database server.')
   
   // connect to Bank database
   db = client.db('Bank');
