@@ -1,14 +1,23 @@
 const MongoClient = require('mongodb').MongoClient;
 const ObjectId = require('mongoose').Types.ObjectId
-const url = 'mongodb://localhost:27017';
-const db = process.env.MONGODB_URL;
-var mongoose = require(‘mongoose’);
+const url = 'mongodb+srv://thatcrazysomebeach:vwwaGt@6myiSzFZ@cluster0.htnm7ae.mongodb.net/?retryWrites=true&w=majority';
+const db = null;
 let users = null;
 
 // connect to mongo
 
-mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://thatcrazysomebeach:vwwaGt@6myiSzFZ@cluster0.htnm7ae.mongodb.net/?retryWrites=true&w=majority');
-  
+const connectionParams={
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useUnifiedTopology: true 
+}
+mongoose.connect(url,connectionParams)
+    .then( () => {
+        console.log('Connected to the database ')
+    })
+    .catch( (err) => {
+        console.error(`Error connecting to the database. n${err}`);
+    })
   // connect to Bank database
   db = client.db('mit_bad_bank');
   // user collection
