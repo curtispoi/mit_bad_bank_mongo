@@ -32,7 +32,7 @@ function Form(props) {
           console.log(`form.js ${url} post result: `, data);
           return data;
         } catch(error) {
-          console.error(`form.js ${url} post error: `, error);
+         // console.error(`form.js ${url} post error: `, error);
         }
       })();
 
