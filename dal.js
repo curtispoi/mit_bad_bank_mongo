@@ -1,19 +1,25 @@
-const MongoClient = require('mongodb').MongoClient;
+//const MongoClient = require('mongodb').MongoClient;
 const ObjectId = require('mongoose').Types.ObjectId
-const url = 'mongodb://localhost:27017';
-let db = null;
-let users = null;
+
+const mongoose = require('mongoose')
+const express = require('express')
+//const url = 'mongodb://localhost:27017';
+const dotenv = require('dotenv');
+dotenv.config();
+
+//let db = null;
+//let users = null;
 
 // connect to mongo
-MongoClient.connect(url, {useUnifiedTopology: true}, (err, client) => {
-  console.log('Connected to the database server.');
+mongoose.connect('mongodb+srv://thatcrazysomebeach:Swepea@cluster0.htnm7ae.mongodb.net/?retryWrites=true&w=majority');
 
+const db = mongoose.connection;
   // connect to Bank database
-  db = client.db('Bank');
+  //db = client.db('Bank');
   // user collection
   users = db.collection('users');
 
-});
+;
 
 
 const create = (name, email, password) => {
