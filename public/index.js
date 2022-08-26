@@ -6,7 +6,7 @@ const UserContext = React.createContext(null);
 
 function Spa() {
   const [currentUser, setCurrentUser] = React.useState(null);
-  console.log('Current User: ' + currentUser)
+  //console.log('Current User: ' + currentUser)
 
   return (
     <HashRouter>
