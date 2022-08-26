@@ -6,8 +6,8 @@ MongoClient.connect(url, {useUnifiedTopology: true}, (err, client) => {
 
   // database name and collection
   const dbName = 'mit_bad_bank';
-  const db = client.db(dbName);
-  const collection = db.collection('customers');
+  const db = client.db(Bank);
+  const collection = db.collection('users');
 
   // new user
   const name = `user${Math.floor(Math.random()*10000)}`;
