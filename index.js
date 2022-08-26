@@ -2,10 +2,27 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const dal = require('./dal.js');
-
+const mongoose = require('mongoose);
 app.use(express.static('public'));
 app.use(express.json());
 app.use(cors());
+
+mongoose.connect("mongodb+srv://thatcrazysomebeach:Swepea@cluster0.htnm7ae.mongodb.net/?retryWrites=true&w=majority", {
+        useNewUrlParser: true,
+        useCreateIndex: true,
+        useFindAndModify: false,
+        useUnifiedTopology: true,
+      })
+      .then(() => {
+        console.log('Database connected successfully!');
+      })
+      .catch((err) => {
+        console.log('Error connecting with error code:', err);
+      });
+    
+    app.listen(PORT, () => {
+      console.log('Server starts at port...');
+
 
 // CreateAccount
 app.post('/account/createaccount', (req, res) => {
