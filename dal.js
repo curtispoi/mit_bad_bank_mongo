@@ -6,10 +6,24 @@ let users = null;
 
 // connect to mongo
 
-var uri = "mongodb+srv://thatcrazysomebeach:Swepea@cluster0.htnm7ae.mongodb.net/?retryWrites=true&w=majority";
-
-mongoose.connect(uri, {useNewUrlParser: true});
-var db = mongoose.connection;
+//var uri = "mongodb+srv://thatcrazysomebeach:Swepea@cluster0.htnm7ae.mongodb.net/?retryWrites=true&w=majority";
+ mongoos.connect("mongodb+srv://thatcrazysomebeach:Swepea@cluster0.htnm7ae.mongodb.net/?retryWrites=true&w=majority", {
+        useNewUrlParser: true,
+        useCreateIndex: true,
+        useFindAndModify: false,
+        useUnifiedTopology: true,
+      })
+      .then(() => {
+        console.log('Database connected successfully!');
+      })
+      .catch((err) => {
+        console.log('Error connecting with error code:', err);
+      });
+    
+    app.listen(PORT, () => {
+      console.log('Server starts at port...');
+   // }mongoose.connect(uri, {useNewUrlParser: true});
+//var db = mongoose.connection;
 
 //MongoClient.connect(uri, {useUnifiedTopology: true}, (err, client) => {
  // console.log('Connected to the database server.');
