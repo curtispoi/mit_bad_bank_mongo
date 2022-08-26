@@ -7,7 +7,7 @@ let users = null;
 // connect to mongo
 
 //var uri = "mongodb+srv://thatcrazysomebeach:Swepea@cluster0.htnm7ae.mongodb.net/?retryWrites=true&w=majority";
- mongoos.connect("mongodb+srv://thatcrazysomebeach:Swepea@cluster0.htnm7ae.mongodb.net/?retryWrites=true&w=majority", {
+ mongoose.connect("mongodb+srv://thatcrazysomebeach:Swepea@cluster0.htnm7ae.mongodb.net/?retryWrites=true&w=majority", {
         useNewUrlParser: true,
         useCreateIndex: true,
         useFindAndModify: false,
