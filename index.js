@@ -7,21 +7,18 @@ app.use(express.static('public'));
 app.use(express.json());
 app.use(cors());
 
-mongoose.connect("mongodb+srv://thatcrazysomebeach:Swepea@cluster0.htnm7ae.mongodb.net/?retryWrites=true&w=majority", {
-        useNewUrlParser: true,
-        useCreateIndex: true,
-        useFindAndModify: false,
-        useUnifiedTopology: true,
-      })
-      .then(() => {
-        console.log('Database connected successfully!');
-      })
-      .catch((err) => {
-        console.log('Error connecting with error code:', err);
-      });
-    
-    app.listen(PORT, () => {
-      console.log('Server starts at port...');
+
+var uri = "mongodb+srv://thatcrazysomebeach:Swepea@cluster0.htnm7ae.mongodb.net/?retryWrites=true&w=majority";
+
+mongoose.connect(uri,
+ { useUnifiedTopology: true, useNewUrlParser: true }
+ );
+ 
+ const db = mongoose.connection;
+db.on("error", console.error.bind(console, "connection error:"));
+db.once("open", function( ) {
+    console.log("hurray! we connected");
+});
 
 
 // CreateAccount
