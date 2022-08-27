@@ -2,25 +2,12 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const dal = require('./dal.js');
-const mongoose = require('mongoose);
+const db = require("./database")
+db.connect(() => {
+  
 app.use(express.static('public'));
 app.use(express.json());
 app.use(cors());
-
-const uri = process.env.MONGODB_URI;
-
-
-
-fetch("url").then(async response => {
-      try {
-       const data = await response.json()
-       console.log('response data?', data)
-     } catch(error) {
-       console.log('Error happened here!')
-       console.error(error)
-     }
-    })
-
 
 // CreateAccount
 app.post('/account/createaccount', (req, res) => {
@@ -70,4 +57,5 @@ app.get('/find/allData', (req, res) => {
 const port = 3000;
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
+});
 });
