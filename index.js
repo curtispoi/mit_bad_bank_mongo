@@ -10,10 +10,10 @@ app.use(express.json());
 app.use(cors());
 
 // CreateAccount
-app.post('/account/createaccount', (req, res) => {
+app.post('/account/createAccount', (req, res) => {
   dal.create(req.body.name, req.body.email, req.body.password)
     .then((user) => {
-      console.log('index.js createaccount user: ', user);
+      console.log('index.js createAccount user: ', user);
       res.send(user);
     });
 });
