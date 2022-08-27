@@ -10,12 +10,16 @@ app.use(cors());
 const uri = process.env.MONGODB_URI;
 
 
-try {
-  const result = JSON.parse(undefined);
-} catch (err) {
-  // 👇️ This runs
-  console.log('Error: ', err.message);
-}
+
+fetch("url").then(async response => {
+      try {
+       const data = await response.json()
+       console.log('response data?', data)
+     } catch(error) {
+       console.log('Error happened here!')
+       console.error(error)
+     }
+    })
 
 
 // CreateAccount
