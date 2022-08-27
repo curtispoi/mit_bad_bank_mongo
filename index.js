@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const dal = require('./dal.js');
-const db = require("./database")
+const db = require("./dal.js")
 db.connect(() => {
   
 app.use(express.static('public'));
