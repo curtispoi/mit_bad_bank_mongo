@@ -1,23 +1,33 @@
 const ObjectId = require('mongoose').Types.ObjectId;
-const express = require('express');
-const bodyParser = require('body-parser');
-const app=express();
 const port=8080;  //  React dev server (3000) is proxied to port 8080
 const cors = require('cors');
-const { MongoClient } = require('mongodb');
+const mongoClient = require('mongodb').MongoClient;
 const uri = "mongodb+srv://thatcrazysomebeach:Swepea@cluster0.htnm7ae.mongodb.net/?retryWrites=true&w=majority";
-const client = new MongoClient(uri);
+let mongodb;
 
+// establish connection to the database
+function connect(callback){
+  mongoClient.connect(uri, (err, db) => {
+  console.log("ERROR");
+  console.log(err);
+  console.log("SUCCESS");
+  console.log(db);
+    mongodb = db;
+    callback();
+  });
+}
 
-app.use(cors());
-app.use(bodyParser.json());
+// get reference to database
+function get(){
+  return mongodb.db("development");
+}
 
+// close the database connection
+function close(){
+  mongodb.close();
+}
 
-app.listen(port, () => { // At 8080
-    console.log('Server is Alive!');
-})
-
-
+module.exports = { connect, get, close };
 
 const create = (name, email, password) => {
   return new Promise((resolve, reject) => {
