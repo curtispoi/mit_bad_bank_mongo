@@ -1,24 +1,39 @@
+const MongoClient = require('mongodb').MongoClient;
+const ObjectId = require('mongoose').Types.ObjectId
 const ObjectId = require('mongoose').Types.ObjectId;
-const port=8080;  //  React dev server (3000) is proxied to port 8080
-const cors = require('cors');
-const { MongoClient } = require("mongodb");
- 
-// Replace the following with your Atlas connection string                                                                                                                                        
-const url = "mongodb+srv://thatcrazysomebeach:Swepea@cluster0.htnm7ae.mongodb.net/data?retryWrites=true&w=majority&useNewUrlParser=true&useUnifiedTopology=true";
-const client = new MongoClient(url);
- 
- // The database to use
- const dbName = "development";
-                      
- async function run() {
-    try {
-         await client.connect();
-         console.log("Connected correctly to server");
-         const db = client.db(dbName);
-         // Use the collection "people"
-         const users = db.collection("users");
+const url = 'mongodb://localhost:27017';
+const mongoose = require('mongoose');
+let db = null;
+let users = null;
 
+// connect to mongo
 
+//var uri = "mongodb+srv://thatcrazysomebeach:Swepea@cluster0.htnm7ae.mongodb.net/?retryWrites=true&w=majority";
+ mongoose.connect("mongodb+srv://thatcrazysomebeach:Swepea@cluster0.htnm7ae.mongodb.net/data?retryWrites=true&w=majority", {
+        useNewUrlParser: true,
+        useCreateIndex: true,
+        useFindAndModify: false,
+        useUnifiedTopology: true,
+      })
+      .then(() => {
+        console.log('Database connected successfully!');
+      })
+      .catch((err) => {
+        console.log('Error connecting with error code:', err);
+      });
+
+    app.listen(PORT, () => {
+      console.log('Server starts at port...');
+   // }mongoose.connect(uri, {useNewUrlParser: true});
+//var db = mongoose.connection;
+
+//MongoClient.connect(uri, {useUnifiedTopology: true}, (err, client) => {
+ // console.log('Connected to the database server.');
+  // connect to Bank database
+  db = client.db('Bank');
+  // user collection
+  users = db.collection('users');
+});
 
 const create = (name, email, password) => {
   return new Promise((resolve, reject) => {
