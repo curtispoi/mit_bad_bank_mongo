@@ -10,6 +10,14 @@ app.use(cors());
 const uri = process.env.MONGODB_URI;
 
 
+try {
+  const result = JSON.parse(undefined);
+} catch (err) {
+  // 👇️ This runs
+  console.log('Error: ', err.message);
+}
+
+
 // CreateAccount
 app.post('/account/createaccount', (req, res) => {
   dal.create(req.body.name, req.body.email, req.body.password)
