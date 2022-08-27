@@ -2,12 +2,24 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const dal = require('./dal.js');
-const db = require("./dal.js")
-db.connect(() => {
-  
+const mongoose = require('mongoose);
 app.use(express.static('public'));
 app.use(express.json());
 app.use(cors());
+
+
+var uri = "mongodb+srv://thatcrazysomebeach:Swepea@cluster0.htnm7ae.mongodb.net/data?retryWrites=true&w=majority";
+
+mongoose.connect(uri,
+ { useUnifiedTopology: true, useNewUrlParser: true }
+ );
+
+ const db = mongoose.connection;
+db.on("error", console.error.bind(console, "connection error:"));
+db.once("open", function( ) {
+    console.log("hurray! we connected");
+});
+const uri = process.env.MONGODB_URI;
 
 // CreateAccount
 app.post('/account/createAccount', (req, res) => {
