@@ -52,7 +52,7 @@ function Form(props) {
     
     switch (props.pageName) {
       case 'CreateAccount':
-        post({name, email, password}, '/account/createaccount')
+        post({name, email, password}, '/account/createAccount')
           .then((user) => {
             user ? props.setShowForm(false) : setErrorMessage('This user has not been created.');
           });
