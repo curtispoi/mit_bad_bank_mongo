@@ -1,21 +1,22 @@
-const MongoClient = require('mongodb').MongoClient;
 const ObjectId = require('mongoose').Types.ObjectId;
-const url = 'mongodb://localhost:27017';
-const mongoose = require('mongoose');
-let db = null;
-let users = null;
+const express = require('express');
+const bodyParser = require('body-parser');
+const app=express();
+const port=8080;  //  React dev server (3000) is proxied to port 8080
+const cors = require('cors');
+const { MongoClient } = require('mongodb');
+const uri = "mongodb+srv://thatcrazysomebeach:Swepea@cluster0.htnm7ae.mongodb.net/?retryWrites=true&w=majority";
+const client = new MongoClient(uri);
 
-//var db = mongoose.connection;
 
-//MongoClient.connect(uri, {useUnifiedTopology: true}, (err, client) => {
- // console.log('Connected to the database server.');
+app.use(cors());
+app.use(bodyParser.json());
 
-  // connect to Bank database
-  db = client.db('Bank');
-  // user collection
-  users = db.collection('users');
 
-});
+app.listen(port, () => { // At 8080
+    console.log('Server is Alive!');
+})
+
 
 
 const create = (name, email, password) => {
