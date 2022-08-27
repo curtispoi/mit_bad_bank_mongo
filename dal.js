@@ -1,33 +1,24 @@
 const ObjectId = require('mongoose').Types.ObjectId;
 const port=8080;  //  React dev server (3000) is proxied to port 8080
 const cors = require('cors');
-const mongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://thatcrazysomebeach:Swepea@cluster0.htnm7ae.mongodb.net/?retryWrites=true&w=majority";
-let mongodb;
+const { MongoClient } = require("mongodb");
+ 
+// Replace the following with your Atlas connection string                                                                                                                                        
+const url = "mongodb+srv://thatcrazysomebeach:Swepea@cluster0.htnm7ae.mongodb.net/?retryWrites=true&w=majority&useNewUrlParser=true&useUnifiedTopology=true";
+const client = new MongoClient(url);
+ 
+ // The database to use
+ const dbName = "development";
+                      
+ async function run() {
+    try {
+         await client.connect();
+         console.log("Connected correctly to server");
+         const db = client.db(dbName);
+         // Use the collection "people"
+         const users = db.collection("users");
 
-// establish connection to the database
-function connect(callback){
-  mongoClient.connect(uri, (err, db) => {
-  console.log("ERROR");
-  console.log(err);
-  console.log("SUCCESS");
-  console.log(db);
-    mongodb = db;
-    callback();
-  });
-}
 
-// get reference to database
-function get(){
-  return mongodb.db("development");
-}
-
-// close the database connection
-function close(){
-  mongodb.close();
-}
-
-module.exports = { connect, get, close };
 
 const create = (name, email, password) => {
   return new Promise((resolve, reject) => {
