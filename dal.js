@@ -1,10 +1,8 @@
 const ObjectId = require('mongoose').Types.ObjectId
 const ObjectId = require('mongoose').Types.ObjectId;
-const url = uri;
 const mongoose = require('mongoose');
 let db = null;
 let users = null;
-
 
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const uri = "mongodb+srv://thatcrazysomebeach:Swepea@cluster0.htnm7ae.mongodb.net/?retryWrites=true&w=majority";
@@ -14,9 +12,11 @@ client.connect(err => {
   // perform actions on the collection object
   client.close();
 });
-
-
-
+mongoose.connect(uri, { dbName: test })
+  .then( () => {
+    console.log('Connection to the Atlas Cluster is successful!')
+  })
+  .catch( (err) => console.error(err));
 
 
 const create = (name, email, password) => {
