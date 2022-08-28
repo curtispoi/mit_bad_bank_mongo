@@ -3,6 +3,7 @@ const app = express();
 const cors = require('cors');
 const dal = require('./dal.js');
 const mongoose = require('mongoose);
+const url = uri;
 
 app.use(express.static('public'));
 app.use(express.json());
