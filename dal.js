@@ -1,4 +1,3 @@
-const MongoClient = require('mongodb').MongoClient;
 const ObjectId = require('mongoose').Types.ObjectId
 const ObjectId = require('mongoose').Types.ObjectId;
 const url = 'mongodb://localhost:27017';
@@ -6,34 +5,19 @@ const mongoose = require('mongoose');
 let db = null;
 let users = null;
 
-// connect to mongo
 
-//var uri = "mongodb+srv://thatcrazysomebeach:Swepea@cluster0.htnm7ae.mongodb.net/?retryWrites=true&w=majority";
- mongoose.connect("mongodb+srv://thatcrazysomebeach:Swepea@cluster0.htnm7ae.mongodb.net/data?retryWrites=true&w=majority", {
-        useNewUrlParser: true,
-        useCreateIndex: true,
-        useFindAndModify: false,
-        useUnifiedTopology: true,
-      })
-      .then(() => {
-        console.log('Database connected successfully!');
-      })
-      .catch((err) => {
-        console.log('Error connecting with error code:', err);
-      });
-
-    app.listen(PORT, () => {
-      console.log('Server starts at port...');
-   // }mongoose.connect(uri, {useNewUrlParser: true});
-//var db = mongoose.connection;
-
-//MongoClient.connect(uri, {useUnifiedTopology: true}, (err, client) => {
- // console.log('Connected to the database server.');
-  // connect to Bank database
-  db = client.db('Bank');
-  // user collection
-  users = db.collection('users');
+const { MongoClient, ServerApiVersion } = require('mongodb');
+const uri = "mongodb+srv://thatcrazysomebeach:Swepea@cluster0.htnm7ae.mongodb.net/?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+client.connect(err => {
+  const collection = client.db("test").collection("devices");
+  // perform actions on the collection object
+  client.close();
 });
+
+
+
+
 
 const create = (name, email, password) => {
   return new Promise((resolve, reject) => {
