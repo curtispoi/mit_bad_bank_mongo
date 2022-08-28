@@ -9,18 +9,14 @@ app.use(express.json());
 app.use(cors());
 
 
-var uri = "mongodb+srv://thatcrazysomebeach:Swepea@cluster0.htnm7ae.mongodb.net/data?retryWrites=true&w=majority";
-
-mongoose.connect(uri,
- { useUnifiedTopology: true, useNewUrlParser: true }
- );
-
- const db = mongoose.connection;
-db.on("error", console.error.bind(console, "connection error:"));
-db.once("open", function( ) {
-    console.log("hurray! we connected");
+const { MongoClient, ServerApiVersion } = require('mongodb');
+const uri = "mongodb+srv://thatcrazysomebeach:Swepea@cluster0.htnm7ae.mongodb.net/?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+client.connect(err => {
+  const collection = client.db("test").collection("devices");
+  // perform actions on the collection object
+  client.close();
 });
-const uri = process.env.MONGODB_URI;
 
 // CreateAccount
 app.post('/account/createAccount', (req, res) => {
