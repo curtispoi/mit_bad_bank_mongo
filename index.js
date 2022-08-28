@@ -18,6 +18,12 @@ client.connect(err => {
   // perform actions on the collection object
   client.close();
 });
+mongoose.connect(uri, { dbName: test })
+  .then( () => {
+    console.log('Connection to the Atlas Cluster is successful!')
+  })
+  .catch( (err) => console.error(err));
+
 
 // CreateAccount
 app.post('/account/createAccount', (req, res) => {
