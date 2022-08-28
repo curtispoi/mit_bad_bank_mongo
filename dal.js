@@ -1,6 +1,6 @@
 const ObjectId = require('mongoose').Types.ObjectId
 const ObjectId = require('mongoose').Types.ObjectId;
-const url = 'mongodb://localhost:27017';
+const url = uri;
 const mongoose = require('mongoose');
 let db = null;
 let users = null;
