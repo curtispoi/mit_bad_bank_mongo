@@ -2,32 +2,16 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const dal = require('./dal.js');
-const mongoose = require('mongoose);
+
 app.use(express.static('public'));
 app.use(express.json());
 app.use(cors());
 
-
-const { MongoClient, ServerApiVersion } = require('mongodb');
-const uri = "mongodb+srv://thatcrazysomebeach:Swepea@cluster0.htnm7ae.mongodb.net/?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
-client.connect(err => {
-  const collection = client.db("test").collection("devices");
-  // perform actions on the collection object
-  client.close();
-});
-mongoose.connect(uri, { dbName: test })
-  .then( () => {
-    console.log('Connection to the Atlas Cluster is successful!')
-  })
-  .catch( (err) => console.error(err));
-
-
 // CreateAccount
-app.post('/account/createAccount', (req, res) => {
+app.post('/account/createaccount', (req, res) => {
   dal.create(req.body.name, req.body.email, req.body.password)
     .then((user) => {
-      console.log('index.js createAccount user: ', user);
+      console.log('index.js createaccount user: ', user);
       res.send(user);
     });
 });
@@ -68,8 +52,7 @@ app.get('/find/allData', (req, res) => {
     })
 });
 
-const port = process.env.PORT || 3000;
+const port = 3000;
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
-});
 });

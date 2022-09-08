@@ -1,22 +1,19 @@
+const MongoClient = require('mongodb').MongoClient;
 const ObjectId = require('mongoose').Types.ObjectId
-const ObjectId = require('mongoose').Types.ObjectId;
-const mongoose = require('mongoose');
+const url = 'mongodb://localhost:27017';
 let db = null;
 let users = null;
 
-const { MongoClient, ServerApiVersion } = require('mongodb');
-const uri = "mongodb+srv://thatcrazysomebeach:Swepea@cluster0.htnm7ae.mongodb.net/?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
-client.connect(err => {
-  const collection = client.db("test").collection("devices");
-  // perform actions on the collection object
-  client.close();
+// connect to mongo
+MongoClient.connect(url, {useUnifiedTopology: true}, (err, client) => {
+  console.log('Connected to the database server.');
+
+  // connect to Bank database
+  db = client.db('data');
+  // user collection
+  users = db.collection('users');
+
 });
-mongoose.connect(uri, { dbName: test })
-  .then( () => {
-    console.log('Connection to the Atlas Cluster is successful!')
-  })
-  .catch( (err) => console.error(err));
 
 
 const create = (name, email, password) => {
