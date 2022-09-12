@@ -1,22 +1,11 @@
-const MongoClient = require('mongodb').MongoClient;
-const ObjectId = require('mongoose').Types.ObjectId
-const url = 'mongodb://localhost:27017';
-const mongoose = require('mongoose')
-let db = null;
-let users = null;
 
-
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/TodoApp', { useNewUrlParser: true })
-        .then(connect => console.log('connected to mongodb..'))
-        .catch(e => console.log('could not connect to mongodb', e))
-
-module.exports = {mongoose}
-
-  // connect to Bank database
-  db = client.db('data');
-  // user collection
-  users = db.collection('users');
-
+const { MongoClient, ServerApiVersion } = require('mongodb');
+const uri = "mongodb+srv://thatcrazysomebeach:Swepea@cluster0.htnm7ae.mongodb.net/?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+client.connect(err => {
+  const collection = client.db("test").collection("devices");
+  // perform actions on the collection object
+  client.close();
 });
 
 
