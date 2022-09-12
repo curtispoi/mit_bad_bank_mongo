@@ -1,12 +1,16 @@
 const MongoClient = require('mongodb').MongoClient;
 const ObjectId = require('mongoose').Types.ObjectId
 const url = 'mongodb://localhost:27017';
+const mongoose = require('mongoose')
 let db = null;
 let users = null;
 
-// connect to mongo
-MongoClient.connect(url, {useUnifiedTopology: true}, (err, client) => {
-  console.log('Connected to the database server.');
+
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/TodoApp', { useNewUrlParser: true })
+        .then(connect => console.log('connected to mongodb..'))
+        .catch(e => console.log('could not connect to mongodb', e))
+
+module.exports = {mongoose}
 
   // connect to Bank database
   db = client.db('data');
